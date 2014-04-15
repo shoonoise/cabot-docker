@@ -1,0 +1,19 @@
+name: demo
+
+ships:
+  vm1: {ip: &vmip 10.0.1.2}
+
+services:
+  cabot_web:
+    image: cabot_web
+    requires: [ postgresql ]
+    instances:
+      cabot_web_1:
+        ship: vm1
+        ports: {backend: 5000, web: 8000}
+  postgresql:
+    image: zumbrunnen/postgresql
+    instances:
+      postgre_1:
+        ship: vm1
+        ports: {db: 5432}
