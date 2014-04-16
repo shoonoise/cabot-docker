@@ -1,7 +1,7 @@
 cabot-docker
 ============
 
-Docker Images to build full cabot environment
+Docker Images to build full [cabot](https://github.com/arachnys/cabot) environment
 
 *It works, but still under development.*
 
@@ -15,7 +15,7 @@ I use [maestro-ng](https://github.com/signalfuse/maestro-ng) to manage Docker co
 
 - Install maestro-ng, docker, setup VM
 - Build Cabot image in target VM (**TODO**: pull image to docker index)
-- Edit `maestro.yml` according to your environment (**TODO**: need some instaructions for this)
+- Edit `maestro.yml` according to your environment (**TODO**: need some instructions for this)
 - Run `python -m maestro -f maestro.yml`
 
 Command `python -m maestro -f maestro.yml fullstatus` should return something like:
