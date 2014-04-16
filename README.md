@@ -13,8 +13,7 @@ I use [maestro-ng](https://github.com/signalfuse/maestro-ng) to manage Docker co
 
 #### Let's try 
 
-- Install maestro-ng, docker, setup VM
-- Build Cabot image in target VM (**TODO**: pull image to docker index)
+- Install maestro-ng, docker, setup host with docker, etc
 - Edit `maestro.yml` according to your environment (**TODO**: need some instructions for this)
 - Run `python -m maestro -f maestro.yml`
 

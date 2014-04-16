@@ -5,7 +5,7 @@ ships:
 
 services:
   cabot_web:
-    image: cabot_web
+    image: shoonoise/cabot-docker
     requires: [postgresql, redis]
     instances:
       cabot_web_1:
