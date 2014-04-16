@@ -1,3 +1,10 @@
+# Cabot Dokcerfile
+#
+# https://github.com/shoonoise/cabot-docker
+#
+# Author: Alexander Kushnarev <avkushnarev@gmail.com>
+# VERSION 1.0
+
 FROM yandex/ubuntu:latest
 
 # Prepare
@@ -15,7 +22,7 @@ ADD run.sh /cabot/
 ADD cabot/static /cabot/static
 ADD nginx.conf /etc/nginx/nginx.conf
 
-# Install depend
+# Install dependencies
 RUN pip install -r /cabot/requirements.txt
 RUN npm install --no-color -g coffee-script less@1.3 --registry http://registry.npmjs.org/
 
@@ -23,7 +30,7 @@ RUN npm install --no-color -g coffee-script less@1.3 --registry http://registry.
 ENV PATH $PATH:/cabot/app
 ENV PYTHONPATH $PYTHONPATH:/cabot/app
 
-# Cabon settings
+# Cabot settings
 ENV DJANGO_SETTINGS_MODULE app.settings
 ENV HIPCHAT_URL https://api.hipchat.com/v1/rooms/message
 ENV LOG_FILE /var/log/cabot
@@ -35,7 +42,6 @@ ENV DEBUG t
 # URL of calendar to synchronise rota with
 ENV CALENDAR_ICAL_URL http://www.google.com/calendar/ical/example.ics
 
-ENV CELERY_BROKER_URL redis://:yourrediskey@localhost:6379/1
 ENV DJANGO_SECRET_KEY 2FL6ORhHwr5eX34pP9mMugnIOd3jzVuT45f7w430Mt5PnEwbcJgma0q8zUXNZ68A
 
 # Hostname of your Graphite server instance
@@ -69,4 +75,4 @@ ENV WWW_SCHEME http
 
 # Run cabot
 WORKDIR /cabot/
-CMD export DATABASE_URL="postgres://docker:docker@$POSTGRESQL_POSTGRE_1_HOST:5432/docker" && /cabot/run.sh
+CMD export DATABASE_URL="postgres://docker:docker@$POSTGRESQL_POSTGRE_1_HOST:5432/docker" && export CELERY_BROKER_URL="redis://$REDIS_REDIS_1_HOST:6379/1" /cabot/run.sh

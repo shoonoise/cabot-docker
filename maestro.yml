@@ -1,12 +1,12 @@
 name: demo
 
 ships:
-  vm1: {ip: &vmip 10.0.1.2}
+  vm1: {ip: 10.0.1.2}
 
 services:
   cabot_web:
     image: cabot_web
-    requires: [ postgresql ]
+    requires: [postgresql, redis]
     instances:
       cabot_web_1:
         ship: vm1
@@ -17,3 +17,9 @@ services:
       postgre_1:
         ship: vm1
         ports: {db: 5432}
+  redis:
+    image: dockerfile/redis
+    instances:
+      redis_1:
+        ship: vm1
+        ports: {broker: 6379}
