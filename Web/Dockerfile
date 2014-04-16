@@ -12,14 +12,9 @@ RUN apt-get update
 RUN apt-get install -y python-pip build-essential nodejs libpq-dev python-dev npm nginx
 
 # Deploy cabot
-ADD cabot/app /cabot/app
-ADD cabot/wsgi.py /cabot/
-ADD cabot/requirements.txt /cabot/
-ADD cabot/gunicorn.conf /cabot/
-ADD cabot/manage.py /cabot/
+RUN git clone https://github.com/arachnys/cabot.git /cabot
 ADD fixture.json /cabot/
 ADD run.sh /cabot/
-ADD cabot/static /cabot/static
 ADD nginx.conf /etc/nginx/nginx.conf
 
 # Install dependencies
@@ -75,4 +70,4 @@ ENV WWW_SCHEME http
 
 # Run cabot
 WORKDIR /cabot/
-CMD export DATABASE_URL="postgres://docker:docker@$POSTGRESQL_POSTGRE_1_HOST:5432/docker" && export CELERY_BROKER_URL="redis://$REDIS_REDIS_1_HOST:6379/1" /cabot/run.sh
+CMD export DATABASE_URL="postgres://docker:docker@$POSTGRESQL_POSTGRE_1_HOST:5432/docker" && export CELERY_BROKER_URL="redis://$REDIS_REDIS_1_HOST:6379/1" && /cabot/run.sh
