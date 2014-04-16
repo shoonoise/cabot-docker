@@ -1,4 +1,4 @@
-# Cabot Dokcerfile
+# Cabot Dockerfile
 #
 # https://github.com/shoonoise/cabot-docker
 #
