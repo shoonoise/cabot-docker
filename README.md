@@ -51,3 +51,4 @@ Start Cabot-Docker
 * `python -m maestro -f maestro.yml start`
 
 Cabot web UI should be available at `http://your_droplet_ip:8000/`.
+Default username/password: docker/docker
