@@ -31,3 +31,23 @@ Command `python -m maestro -f maestro.yml fullstatus` should return something li
 ```
 
 Cabot web UI should be available at `http:your_vm_host:8000/`.
+
+### Installation on a Fresh Digital Ocean Docker Image
+
+* Add `DOCKER_OPTS="-H tcp://0.0.0.0:4243 --dns 8.8.8.8 --dns
+8.8.4.4"` to `/etc/default/docker`
+* Restart docker daemon: `restart docker`
+* Change `vm1: {ip: 10.0.1.2}` in `maestro.yml` to my droplet ip.
+
+Install Maestro-ng
+
+* `apt-get install python-pip`
+* `pip install --user --upgrade git+git://github.com/signalfuse/maestro-ng`
+
+Start Cabot-Docker
+
+* `git clone https://github.com/shoonoise/cabot-docker.git`
+* `cd cabot-docker`
+* `python -m maestro -f maestro.yml start`
+
+Cabot web UI should be available at `http:your_vm_host:8000/`.
