@@ -45,10 +45,10 @@ By default maestro expected running Docker daemon in `4243` port, so you need to
 
 ### <a name="maestro_conf"></a>Maestro configuration
 
-At first make shure that you are read maestro-ng [docs](https://github.com/signalfuse/maestro-ng#orchestration).
+At first make sure that you are have read maestro-ng [docs](https://github.com/signalfuse/maestro-ng#orchestration).
 
-To just run Cabot you need:
-* Change `vm1: {ip: localhost}` in `maestro.yml` to host with docker(ip/hostanme).
+To *just run* Cabot you need:
+* Change `vm1: {ip: localhost}` in `maestro.yml` to host with docker (ip/hostname).
 
 But to complete the work you also need to [rewrite](https://github.com/signalfuse/maestro-ng#passing-extra-environment-variables) default environment variables(eg `GRAPHITE_USER`/`GRAPHITE_PASS`, `SES_HOST`/`SES_USER`/`SES_PASS` and so on).
 

@@ -1,7 +1,7 @@
 name: demo
 
 ships:
-  vm1: {ip: 10.0.1.2}
+  vm1: {ip: localhost}
 
 services:
   cabot_web:
