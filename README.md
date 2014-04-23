@@ -1,20 +1,23 @@
 cabot-docker
 ============
 
-Docker Images to build full [cabot](https://github.com/arachnys/cabot) environment
+Docker Images to build full [cabot](https://github.com/arachnys/cabot) environment.
 
-*It works, but still under development.*
+*Still Not Ready for Production*
 
-### How To
+Overview
+============
 
 As Cabot contains several things inside (django, celery, redis, database, etc) and docker using assumes one image for one thing we need several images for Cabot.
 
 I use [maestro-ng](https://github.com/signalfuse/maestro-ng) to manage Docker containers.
 
-#### Let's try
+Let's try
+------------
 
-- Install maestro-ng, docker, setup host with docker, etc
-- Edit `maestro.yml` according to your environment (**TODO**: need some instructions for this)
+- [Install](https://github.com/signalfuse/maestro-ng#installation) maestro-ng on host from which you want to manage dockers images (*commonly it's your localhost*).
+- [Install](http://docs.docker.io/installation/#installation) and [configure](#docker_conf) Docker on host where Docker containers will run (*commonly it's ec2/Digital Ocean instances, virtual box/vmware vm's, etc*).
+- [Update](#maestro_conf) `maestro.yml` according to *your* environment
 - Run `python -m maestro -f maestro.yml`
 
 Command `python -m maestro -f maestro.yml fullstatus` should return something like:
@@ -30,25 +33,24 @@ Command `python -m maestro -f maestro.yml fullstatus` should return something li
      >>  5000/tcp:backend
 ```
 
-Cabot web UI should be available at `http:your_vm_host:8000/`.
+Cabot web UI should be available at `http://_host_with_docker_:8000/`.
+Default username/password: `docker/docker`. You can add new users using Django admin interface.
 
-### Installation on a Fresh Digital Ocean Docker Image
+### <a name="docker_conf"></a>Docker configuration
 
-* Add `DOCKER_OPTS="-H tcp://0.0.0.0:4243 --dns 8.8.8.8 --dns
-8.8.4.4"` to `/etc/default/docker`
+By default maestro expected running Docker daemon in `4243` port, so you need to configure it:
+
+* Add `DOCKER_OPTS="-H tcp://0.0.0.0:4243"` to `/etc/default/docker`
 * Restart docker daemon: `restart docker`
 
-Install Maestro-ng
+### <a name="maestro_conf"></a>Maestro configuration
 
-* `apt-get install python-pip`
-* `pip install --user --upgrade git+git://github.com/signalfuse/maestro-ng`
+At first make shure that you are read maestro-ng [docs](https://github.com/signalfuse/maestro-ng#orchestration).
 
-Start Cabot-Docker
+To just run Cabot you need:
+* Change `vm1: {ip: localhost}` in `maestro.yml` to host with docker(ip/hostanme).
 
-* `git clone https://github.com/shoonoise/cabot-docker.git`
-* `cd cabot-docker`
-* Change `vm1: {ip: 10.0.1.2}` in `maestro.yml` to my droplet ip.
-* `python -m maestro -f maestro.yml start`
+But to complete the work you also need to [rewrite](https://github.com/signalfuse/maestro-ng#passing-extra-environment-variables) default environment variables(eg `GRAPHITE_USER`/`GRAPHITE_PASS`, `SES_HOST`/`SES_USER`/`SES_PASS` and so on).
 
-Cabot web UI should be available at `http://your_droplet_ip:8000/`.
-Default username/password: docker/docker
+By default cabot image pulled from [Docker Index](https://index.docker.io/u/shoonoise/cabot-docker/), but you still can build image manual and say maestro use it, just change `image: shoonoise/cabot-docker` in `cabot web` section to your image's name. 
+The same way to change all other images (*postgresql*, *redis*, etc).
