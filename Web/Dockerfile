@@ -2,17 +2,17 @@
 #
 # https://github.com/shoonoise/cabot-docker
 #
-# Author: Alexander Kushnarev <avkushnarev@gmail.com>
 # VERSION 1.0
 
 FROM yandex/ubuntu:latest
+MAINTAINER Alexander Kushnarev <avkushnarev@gmail.com>
 
 # Prepare
 RUN apt-get update
 RUN apt-get install -y python-pip build-essential nodejs libpq-dev python-dev npm nginx
 
 # Deploy cabot
-RUN git clone https://github.com/arachnys/cabot.git /cabot
+RUN git clone https://github.com/shoonoise/cabot.git /cabot
 ADD fixture.json /cabot/
 ADD run.sh /cabot/
 ADD nginx.conf /etc/nginx/nginx.conf
@@ -68,6 +68,8 @@ ENV TWILIO_OUTGOING_NUMBER +14155551234
 ENV WWW_HTTP_HOST cabot.example.com
 ENV WWW_SCHEME http
 
+ADD env_vars /cabot/
+
 # Run cabot
 WORKDIR /cabot/
-CMD export DATABASE_URL="postgres://docker:docker@$POSTGRESQL_POSTGRE_1_HOST:5432/docker" && export CELERY_BROKER_URL="redis://$REDIS_REDIS_1_HOST:6379/1" && /cabot/run.sh
+CMD . /cabot/env_vars && /cabot/run.sh

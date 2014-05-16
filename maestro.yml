@@ -1,25 +1,41 @@
 name: demo
 
 ships:
-  vm1: {ip: localhost}
+  vm1: {ip: __FIX_ME__}
 
 services:
   cabot_web:
-    image: shoonoise/cabot-docker
-    requires: [postgresql, redis]
+    image: cabot-docker
+    requires: [database, celery_broker, mail]
     instances:
-      cabot_web_1:
+      cabot:
         ship: vm1
         ports: {backend: 5000, web: 8000}
-  postgresql:
-    image: zumbrunnen/postgresql
+        env:
+          GRAPHITE_API: __FIX_ME__
+          HIPCHAT_ALERT_ROOM: __FIX_ME__
+          HIPCHAT_API_KEY: __FIX_ME__
+  database:
+    image: orchardup/postgresql
     instances:
-      postgre_1:
+      postgre:
         ship: vm1
         ports: {db: 5432}
-  redis:
+        volumes:
+          /var/lib/postgresql: /var/lib/cabotdb
+        env:
+          POSTGRESQL_USER: docker
+          POSTGRESQL_PASS: docker
+          POSTGRESQL_DB: docker
+  celery_broker:
     image: dockerfile/redis
     instances:
-      redis_1:
+      redis:
         ship: vm1
         ports: {broker: 6379}
+  mail:
+    image: yandex/exim
+    instances:
+      exim:
+        ship: vm1
+        ports: {smtp: "25:225"}
