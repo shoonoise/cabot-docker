@@ -4,29 +4,32 @@
 #
 # VERSION 1.0
 
-FROM yandex/ubuntu:latest
+FROM ubuntu:14.04
 MAINTAINER Alexander Kushnarev <avkushnarev@gmail.com>
 
 # Prepare
 RUN apt-get update
-RUN apt-get install -y python-pip build-essential nodejs libpq-dev python-dev npm nginx
+RUN apt-get install -y build-essential nodejs libpq-dev python-dev npm nginx git curl
+
+RUN curl -OL https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+RUN python get-pip.py
 
 # Deploy cabot
-RUN git clone https://github.com/shoonoise/cabot.git /cabot
+RUN git clone https://github.com/arachnys/cabot.git /cabot
 ADD fixture.json /cabot/
 ADD run.sh /cabot/
 ADD nginx.conf /etc/nginx/nginx.conf
 
 # Install dependencies
-RUN pip install -r /cabot/requirements.txt
+RUN pip install -e /cabot/
 RUN npm install --no-color -g coffee-script less@1.3 --registry http://registry.npmjs.org/
 
 # Set env var
-ENV PATH $PATH:/cabot/app
-ENV PYTHONPATH $PYTHONPATH:/cabot/app
+ENV PATH $PATH:/cabot/
+ENV PYTHONPATH $PYTHONPATH:/cabot/
 
 # Cabot settings
-ENV DJANGO_SETTINGS_MODULE app.settings
+ENV DJANGO_SETTINGS_MODULE cabot.settings
 ENV HIPCHAT_URL https://api.hipchat.com/v1/rooms/message
 ENV LOG_FILE /var/log/cabot
 ENV PORT 5000
