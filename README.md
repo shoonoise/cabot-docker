@@ -18,9 +18,9 @@ Let's try
 - [Install](https://github.com/signalfuse/maestro-ng#installation) maestro-ng on host from which you want to manage dockers images (*commonly it's your localhost*).
 - [Install](http://docs.docker.io/installation/#installation) and [configure](#docker_conf) Docker on host where Docker containers will run (*commonly it's ec2/Digital Ocean instances, virtual box/vmware vm's, etc*).
 - [Update](#maestro_conf) `maestro.yml` according to *your* environment
-- Run `python -m maestro -f maestro.yml`
+- Run `python -m maestro -f maestro.yml start`
 
-Command `python -m maestro -f maestro.yml fullstatus` should return something like:
+Command `python -m maestro -f maestro.yml status -F` should return something like:
 
 ```
   #  INSTANCE             SERVICE         SHIP                 CONTAINER       STATUS
