@@ -1,18 +1,16 @@
-name: demo
+name: cabot
 
 ships:
-  vm1: {ip: __FIX_ME__}
-
+  vm1: {ip: __FIX_ME__ ,docker_port: 4243}
 services:
   cabot_web:
-    image: cabot-docker
+    image: shoonoise/cabot-docker
     requires: [database, celery_broker, mail]
     instances:
       cabot:
         ship: vm1
-        ports: {backend: 5000, web: 8000}
+        ports: {backend: 5000, web: 80}
         env:
-          GRAPHITE_API: __FIX_ME__
           HIPCHAT_ALERT_ROOM: __FIX_ME__
           HIPCHAT_API_KEY: __FIX_ME__
   database:

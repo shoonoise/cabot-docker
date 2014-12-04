@@ -19,6 +19,7 @@ RUN git clone https://github.com/arachnys/cabot.git /cabot
 ADD fixture.json /cabot/
 ADD run.sh /cabot/
 ADD nginx.conf /etc/nginx/nginx.conf
+ADD migrate.sh /cabot/
 
 # Install dependencies
 RUN pip install -e /cabot/
@@ -70,9 +71,9 @@ ENV TWILIO_OUTGOING_NUMBER +14155551234
 # Used for pointing links back in alerts etc.
 ENV WWW_HTTP_HOST cabot.example.com
 ENV WWW_SCHEME http
+RUN ["ln","-s","/usr/bin/nodejs","/usr/bin/node"]
 
-ADD env_vars /cabot/
-
-# Run cabot
 WORKDIR /cabot/
-CMD . /cabot/env_vars && /cabot/run.sh
+CMD . /cabot/migrate.sh && /cabot/run.sh
+
+
