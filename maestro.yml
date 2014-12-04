@@ -4,7 +4,7 @@ ships:
   vm1: {ip: __FIX_ME__ ,docker_port: 4243}
 services:
   cabot_web:
-    image: shoonoise/cabot-docker
+    image: wondermall/cabot
     requires: [database, celery_broker, mail]
     instances:
       cabot:
