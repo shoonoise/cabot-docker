@@ -26,7 +26,7 @@ services:
           POSTGRESQL_PASS: docker
           POSTGRESQL_DB: docker
   celery_broker:
-    image: dockerfile/redis
+    image: redis
     instances:
       redis:
         ship: vm1
