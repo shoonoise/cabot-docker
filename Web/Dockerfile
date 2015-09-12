@@ -9,7 +9,7 @@ MAINTAINER Alexander Kushnarev <avkushnarev@gmail.com>
 
 # Prepare
 RUN apt-get update
-RUN apt-get install -y build-essential nodejs libpq-dev python-dev npm nginx git curl libldap2-dev libsasl2-dev
+RUN apt-get install -y build-essential nodejs libpq-dev python-dev npm nginx git curl libldap2-dev libsasl2-dev iputils-ping
 
 RUN curl -OL https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 RUN python get-pip.py
