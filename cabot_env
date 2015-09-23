@@ -1,0 +1,21 @@
+# Hipchat integration
+HIPCHAT_ALERT_ROOM=__FIX_ME__
+HIPCHAT_API_KEY=__FIX_ME__
+
+# Hostname of your Graphite server instance
+GRAPHITE_API=__FIX_ME__
+GRAPHITE_USER=__FIX_ME__
+GRAPHITE_PASS=__FIX_ME__
+
+# URL of calendar to synchronise rota with
+CALENDAR_ICAL_URL=http://www.google.com/calendar/ical/example.ics
+
+# Jenkins integration
+JENKINS_API=_FIX_ME__
+JENKINS_USER=_FIX_ME__
+JENKINS_PASS=_FIX_ME__
+
+# Twilio integration for SMS and telephone alerts
+TWILIO_ACCOUNT_SID=_FIX_ME__
+TWILIO_AUTH_TOKEN=_FIX_ME__
+TWILIO_OUTGOING_NUMBER=_FIX_ME__

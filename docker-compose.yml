@@ -1,0 +1,35 @@
+app:
+  build: ./Cabot
+  links:
+    - db
+    - celery_broker
+    - smtp_server
+  volumes:
+    - /cabot
+  env_file: cabot_env
+
+db:
+  image: orchardup/postgresql
+  volumes:
+    - /var/lib/cabotdb:/var/lib/postgresql
+  environment:
+    POSTGRESQL_USER: docker
+    POSTGRESQL_PASS: docker
+    POSTGRESQL_DB: docker
+
+celery_broker:
+  image: redis
+
+smtp_server:
+  image: tianon/exim4
+
+nginx:
+  image: nginx
+  ports:
+     - "8080:8080"
+  links:
+     - app
+  volumes_from:
+     - app
+  volumes:
+     - ./Cabot/nginx.conf:/etc/nginx/nginx.conf:ro
