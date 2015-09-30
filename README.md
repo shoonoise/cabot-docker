@@ -21,6 +21,8 @@ Let's try
 
 - [Install](https://docs.docker.com/compose/install/) docker-compose.
 
+- Clone the repository (`git clone git@github.com:shoonoise/cabot-docker.git && cd cabot-docker`)
+
 - Run `docker-compose up -d`
 
 Command `docker-compose ps` should return something like:
