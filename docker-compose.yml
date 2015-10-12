@@ -9,13 +9,12 @@ app:
   env_file: cabot_env
 
 db:
-  image: orchardup/postgresql
+  image: postgresql
   volumes:
     - /var/lib/cabotdb:/var/lib/postgresql
   environment:
     POSTGRESQL_USER: docker
-    POSTGRESQL_PASS: docker
-    POSTGRESQL_DB: docker
+    POSTGRESQL_PASSWORD: docker
 
 celery_broker:
   image: redis
