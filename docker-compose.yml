@@ -2,8 +2,8 @@ app:
   build: ./Cabot
   links:
     - db
-    - celery_broker
-    - smtp_server
+    - celerybroker
+    - smtp
   volumes:
     - /cabot
   env_file: cabot_env
@@ -16,10 +16,10 @@ db:
     POSTGRESQL_USER: docker
     POSTGRESQL_PASSWORD: docker
 
-celery_broker:
+celerybroker:
   image: redis
 
-smtp_server:
+smtp:
   image: tianon/exim4
 
 nginx:
