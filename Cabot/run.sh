@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export DATABASE_URL="postgres://docker:docker@db:5432/docker"
+export DATABASE_URL="postgres://$DB_USER:$DB_PASS@$DB_HOST:$DB_PORT/docker"
 export CELERY_BROKER_URL="redis://celery_broker:6379/1"
 
 python manage.py collectstatic --noinput &&\
