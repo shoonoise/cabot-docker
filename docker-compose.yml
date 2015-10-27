@@ -2,7 +2,7 @@ app:
   build: ./Cabot
   links:
     - db
-    - celery_broker
+    - celerybroker
     - smtp
   volumes:
     - /cabot
@@ -16,7 +16,7 @@ db:
     POSTGRES_USER: docker
     POSTGRES_PASSWORD: docker
 
-celery_broker:
+celerybroker:
   image: redis
 
 smtp:
