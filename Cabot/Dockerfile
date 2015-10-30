@@ -49,5 +49,7 @@ ENV WWW_SCHEME http
 
 RUN ["ln","-s","/usr/bin/nodejs","/usr/bin/node"]
 
+EXPOSE 5000
+
 WORKDIR /cabot/
 CMD . /cabot/run.sh
