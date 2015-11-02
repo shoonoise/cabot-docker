@@ -1,11 +1,7 @@
 #!/bin/bash
 
-export DATABASE_URL="postgres://docker:docker@db:5432/docker"
-export CELERY_BROKER_URL="redis://celery_broker:6379/1"
-export SES_HOST="smtp_server"
-export SES_USER=""
-export SES_PASS=""
-export SES_PORT="25"
+export DATABASE_URL="postgres://$DB_USER:$DB_PASS@$DB_HOST:$DB_PORT/docker"
+export CELERY_BROKER_URL="redis://celerybroker:6379/1"
 
 python manage.py collectstatic --noinput &&\
 python manage.py compress --force &&\

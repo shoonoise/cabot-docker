@@ -36,6 +36,10 @@ ENV PORT 5000
 ENV ADMIN_EMAIL you@example.com
 ENV CABOT_FROM_EMAIL noreply@example.com
 ENV DEBUG t
+ENV DB_HOST db
+ENV DB_PORT 5432
+ENV DB_USER docker
+ENV DB_PASSWORD docker
 
 ENV DJANGO_SECRET_KEY 2FL6ORhHwr5eX34pP9mMugnIOd3jzVuT45f7w430Mt5PnEwbcJgma0q8zUXNZ68A
 
@@ -45,6 +49,7 @@ ENV WWW_SCHEME http
 
 RUN ["ln","-s","/usr/bin/nodejs","/usr/bin/node"]
 
+EXPOSE 5000
+
 WORKDIR /cabot/
 CMD . /cabot/run.sh
-
