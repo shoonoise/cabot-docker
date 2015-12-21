@@ -21,7 +21,7 @@ Let's try
 
 - [Install](https://docs.docker.com/compose/install/) docker-compose.
 
-- Clone the repository (`git clone git@github.com:shoonoise/cabot-docker.git && cd cabot-docker`)
+- Clone the repository (`git clone https://github.com/shoonoise/cabot-docker.git && cd cabot-docker`)
 
 - Run `docker-compose up -d`
 
