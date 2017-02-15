@@ -10,16 +10,6 @@ GRAPHITE_PASS=__FIX_ME__
 # URL of calendar to synchronise rota with
 CALENDAR_ICAL_URL=http://www.google.com/calendar/ical/example.ics
 
-# Mail Settings
-SES_HOST=__FIX_ME__
-SES_USER=__FIX_ME__
-SES_PASS=__FIX_ME__
-SES_PORT=__FIX_ME__
-CABOT_FROM_EMAIL=__FIX_ME__
-# Default Mail-Backend is django_smtp_ssl.SSLEmailBackend
-# only uncomment if you want simple SMTP without encryption
-#SES_BACKEND=django.core.mail.backends.smtp.EmailBackend
-
 # Jenkins integration
 JENKINS_API=_FIX_ME__
 JENKINS_USER=_FIX_ME__
