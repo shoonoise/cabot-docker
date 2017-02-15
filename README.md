@@ -23,6 +23,8 @@ Let's try
 
 - Clone the repository (`git clone https://github.com/shoonoise/cabot-docker.git && cd cabot-docker`)
 
+- Change the settings in `cabot_env` and link them to the correct API's. You can find more information on the official Wiki at http://cabotapp.com/use/configuration.html
+
 - Run `docker-compose up -d`
 
 Command `docker-compose ps` should return something like:
