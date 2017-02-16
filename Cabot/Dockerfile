@@ -4,7 +4,7 @@
 #
 # VERSION 1.1
 
-FROM ubuntu:trusty
+FROM ubuntu:16.04
 MAINTAINER Alexander Kushnarev <avkushnarev@gmail.com>
 
 # Prepare
@@ -23,6 +23,7 @@ ADD gunicorn.conf /cabot/gunicorn.conf
 # Install dependencies
 RUN pip install -e /cabot/
 RUN npm install --no-color -g coffee-script less@1.3 --registry http://registry.npmjs.org/
+RUN pip install --upgrade pip
 
 # Set env var
 ENV PATH $PATH:/cabot/
