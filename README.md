@@ -1,3 +1,6 @@
+
+**The project is deprecated and not maintained anymore**
+
 cabot-docker
 ============
 
